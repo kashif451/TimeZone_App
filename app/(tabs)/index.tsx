@@ -1,4 +1,7 @@
 // DashboardScreen.js
+import FeatureCard from "@/components/Cards/FeatureCard";
+import NotesSection from "@/components/DashboardSections/NotesSection";
+import Header from "@/components/Header/Header";
 import { ThemedText as Text } from "@/components/ThemedText";
 import { ThemedView as View } from "@/components/ThemedView";
 import { Colors } from "@/constants/Colors";
@@ -20,24 +23,7 @@ const index = () => {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView style={styles.container}>
         {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity>
-            <Icon name="menu" size={RFValue(28)} />
-          </TouchableOpacity>
-          <View style={styles.rightIcons}>
-            <Image
-              source={require("@/assets/images/bell.png")}
-              style={styles.bellIcon}
-              resizeMode="contain"
-            />
-            <Image
-              source={require("@/assets/images/mapicon.png")}
-              style={styles.mapIcon}
-              resizeMode="cover"
-            />
-          </View>
-        </View>
-
+        <Header />
         {/* Greeting */}
         <View style={styles.userContainer}>
           <Text style={styles.greeting}>Hey </Text>
@@ -101,75 +87,85 @@ const index = () => {
             <Text>Local Time</Text>
             <Text style={styles.city}>Lahore, Pak</Text>
             <Text style={styles.label}>GMT</Text>
-            <View style={styles.divider2}><Text>hello</Text></View>
-            <Text style={styles.time}>3:43 PM</Text>
+            <View style={styles.divider2}>
+              <Text>hello</Text>
+            </View>
+            <Text type="title" style={styles.time}>3:43 PM</Text>
             <Text style={styles.date}>Jan, 10</Text>
           </View>
         </View>
+        <FeatureCard
+          title="Get Started with Reminders"
+          arrowIcon={require("@/assets/images/solar_arrow-up.png")}
+          description={
+            <>
+              Good news! You can now set customized
+              <Text type="title" style={styles.link3}>
+                {" "}
+                reminders
+              </Text>{" "}
+              and meeting events by comparing different timezones.
+            </>
+          }
+          highlight={
+            <>
+              Or, why wait?
+              <Text type="title" style={styles.link}>
+                {" "}
+                Add one
+              </Text>{" "}
+              now and stay ahead! 🚀
+            </>
+          }
+          image={require("@/assets/images/reminderimg2.png")}
+        />
 
-        {/* Reminder Card */}
-        <View style={styles.featureCard}>
-          <View style={styles.cardHeader}>
-            <Text type="subtitle" style={styles.featureTitle}>
-              Get Started with Reminders
-            </Text>
-            <View style={styles.arrowConatiner}>
-              <Image
-                source={require("@/assets/images/solar_arrow-up.png")}
-                style={styles.arrowUpIcon}
-              />
-            </View>
-          </View>
-          <Text style={styles.featureText}>
-            Good news! You can now set customized
-            <Text type="title" style={styles.link3}> reminders
-            </Text> and meeting events by comparing different timezones.
-          </Text>
-          <View style={styles.bottomConatiner}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.highlight}>
-                Or, why wait? <Text type="title" style={styles.link}> Add one</Text> now and
-                stay ahead! 🚀
+        <FeatureCard
+          title="Get Started with Notes"
+          arrowIcon={require("@/assets/images/solar_arrow-up.png")}
+          description={
+            <>
+              Quickly note down your ideas or tasks and
+              <Text type="title" style={styles.link2}>
+                {" "}
+                link them to different locations if you wish
               </Text>
-            </View>
-            <Image
-              source={require("@/assets/images/reminderimg2.png")}
-              style={styles.image}
-            />
+            </>
+          }
+          highlight={
+            <>
+              Or, start now.
+              <Text type="title" style={styles.link}>
+                Add a note
+              </Text>
+              and begin capturing! 💡
+            </>
+          }
+          image={require("@/assets/images/reminderimag3.png")}
+        />
+
+        {/* Upcoming Reminders Section */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text type="subtitle" style={styles.sectionTitle}>
+              Upcoming Reminders
+            </Text>
+            <Text style={styles.viewAll}>View All</Text>
+          </View>
+
+          <View style={[styles.reminderCard, styles.purple]}>
+            <Text style={styles.reminderText}>Project Sync Call: London</Text>
+            <Text style={styles.reminderTime}>8:30 PM</Text>
+          </View>
+
+          <View style={[styles.reminderCard, styles.green]}>
+            <Text style={styles.reminderText}>Project Sync Call: London</Text>
+            <Text style={styles.reminderTime}>8:30 PM</Text>
           </View>
         </View>
 
-        {/* Notes Card */}
-        <View style={styles.featureCard}>
-          <View style={styles.cardHeader}>
-            <Text type="subtitle" style={styles.featureTitle}>
-              Get Started with Notes
-            </Text>
-            <View style={styles.arrowConatiner}>
-              <Image
-                source={require("@/assets/images/solar_arrow-up.png")}
-                style={styles.arrowUpIcon}
-              />
-            </View>
-          </View>
-          <Text style={styles.featureText}>
-            Quickly note down your ideas or tasks and
-            <Text type="title" style={styles.link2}> link them to different locations if you wish
-            </Text>
-          </Text>
-          <View style={styles.bottomConatiner}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.highlight}>
-                Or, start now. <Text type="title" style={styles.link}> Add a note</Text> and begin capturing!
-                💡
-              </Text>
-            </View>
-            <Image
-              source={require("@/assets/images/reminderimag3.png")}
-              style={styles.image}
-            />
-          </View>
-        </View>
+        {/* Notes Section */}
+        <NotesSection />
       </ScrollView>
     </SafeAreaView>
   );
@@ -178,7 +174,7 @@ const index = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.white,
     paddingTop: 40,
     paddingBottom: 60,
   },
@@ -189,16 +185,15 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: "center",
   },
-  divider2:{
-    width:"100%",
-    marginVertical:6,
-    height:1,
- borderBottomWidth:1
+  divider2: {
+    width: "100%",
+    marginVertical: 6,
+    height: 1,
+    borderBottomWidth: 1,
   },
   bottomConatiner: {
     flexDirection: "row",
     alignItems: "center",
-    // justifyContent: "space-between",
     flexWrap: "nowrap",
   },
 
@@ -238,7 +233,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginBottom:80,
+    marginBottom: 80,
     backgroundColor: Colors.white,
     padding: 16,
   },
@@ -271,11 +266,11 @@ const styles = StyleSheet.create({
   bold: {
     fontSize: RFValue(16),
   },
-  link2:{
+  link2: {
     fontSize: RFValue(12),
-     color:Colors.primary
+    color: Colors.primary,
   },
-  link3:{
+  link3: {
     fontSize: RFValue(12),
   },
   handIcon: {
@@ -315,12 +310,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginVertical: 10,
   },
-  sectionTitle: {
-    fontSize: 16,
-  },
-  viewAll: {
-    color: Colors.black,
-  },
+
   favCards: {
     flexDirection: "row",
     gap: 12,
@@ -351,8 +341,7 @@ const styles = StyleSheet.create({
     color: "#aaa",
   },
   time: {
-    fontSize: 22,
-    fontWeight: "bold",
+    fontSize: RFValue(16),
     marginVertical: 4,
   },
   date: {
@@ -365,9 +354,9 @@ const styles = StyleSheet.create({
     borderColor: Colors.lightGrey,
     marginVertical: 34,
     elevation: 4,
-    overflow: 'hidden', // important for clipping content inside rounded corners
+    overflow: "hidden",
   },
-  
+
   cardHeader: {
     paddingHorizontal: 16,
     flexDirection: "row",
@@ -389,7 +378,7 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   link: {
-    fontSize:RFValue(12),
+    fontSize: RFValue(12),
     color: Colors.primary,
   },
   image: {
@@ -408,12 +397,45 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   navText: {
-    color: "#fff",
+    color: Colors.white,
     fontSize: 12,
   },
   timeZoneConatiner: {
     paddingLeft: 20,
     gap: 20,
+  },
+  section: {
+    marginBottom: 30,
+  },
+
+  sectionTitle: {
+    fontSize: RFValue(16),
+  },
+  viewAll: {
+    color: Colors.black,
+    fontWeight: "500",
+  },
+  reminderCard: {
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  reminderText: {
+    color: "#fff",
+    fontWeight: "600",
+    fontSize: 15,
+  },
+  reminderTime: {
+    color: "#fff",
+    fontWeight: "600",
+  },
+  purple: {
+    backgroundColor: "#7065F0",
+  },
+  green: {
+    backgroundColor: "#3AC76B",
   },
 });
 

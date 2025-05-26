@@ -29,4 +29,10 @@ export const Colors = {
   lightGrey:"#ddd",
   black:"#000000",
   inputBgColor:"#F6F6F6",
+  textPrimary: '#1C1C1E',
+  textSecondary: '#4A4A4A',
+  cardBackground: '#FFFFFF',
+  noteBlue: '#D6EAF8',
+  noteRed: '#FADBD8',
+  noteYellow: '#FCF3CF',
 };
